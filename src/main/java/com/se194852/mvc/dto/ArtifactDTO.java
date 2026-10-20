@@ -2,8 +2,7 @@ package com.se194852.mvc.dto;
 
 import com.se194852.mvc.entity.Artifact;
 import com.se194852.mvc.entity.Category;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,21 +13,31 @@ import java.time.LocalDate;
  */
 public class ArtifactDTO implements Serializable {
     private final Integer id;
-    @NotNull
-    @Size(max = 6)
-    private final String artifactCode;
-    @NotNull
-    @Size(max = 200)
-    private final String artifactName;
-    @NotNull
-    private final BigDecimal estimatedValue;
-    @NotNull
-    private final Integer ageYears;
-    @NotNull
-    private final LocalDate acquisitionDate;
-    @NotNull
-    @Size(max = 10)
-    private final String status;
+    @NotBlank(message = "Artifact Code is mandatory")
+    @Pattern(regexp = "^[A-Z]{3}\\d{3}$", message = "Must start with 3 uppercase letters followed by 3 digits (e.g., ART101)")
+    private String artifactCode;
+
+    @NotBlank(message = "Artifact Name is mandatory")
+    @Size(max = 200, message = "Max length 200")
+    private String artifactName;
+
+    @NotNull(message = "Category is mandatory")
+    private Integer categoryId;
+
+    @NotNull(message = "Estimated Value is mandatory")
+    @DecimalMin(value = "0.01", message = "Must be a number greater than 0")
+    private BigDecimal estimatedValue;
+
+    @NotNull(message = "Age is mandatory")
+    @Min(value = 1, message = "Must be a positive integer (greater than 0)")
+    private Integer ageYears;
+
+    @NotNull(message = "Acquisition Date is mandatory")
+    @PastOrPresent(message = "Must be a valid past or present date")
+    private LocalDate acquisitionDate;
+
+    @NotBlank(message = "Status is mandatory")
+    private String status;
 
     private Category category;
 
