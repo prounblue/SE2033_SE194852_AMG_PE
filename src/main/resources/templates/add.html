@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Artifact</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-4" style="border: 3px solid red; padding: 20px;">
+    <h1>Add New Artifact</h1>
+    <hr>
+    <form th:action="@{/add}" th:object="${artifact}" method="post">
+        <div class="row mt-3">
+            <div class="col">
+                <label>Artifact Code :</label>
+                <input type="text" th:field="*{artifactCode}" class="form-control" required>
+            </div>
+            <div class="col">
+                <label>Category :</label>
+                <select th:field="*{category.id}" class="form-control" required>
+                    <option value="">-- Select Category --</option>
+                    <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.categoryName}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col">
+                <label>Artifact Name :</label>
+                <input type="text" th:field="*{artifactName}" class="form-control" required>
+            </div>
+            <div class="col">
+                <label>Estimate Value ($) :</label>
+                <input type="number" step="0.01" th:field="*{estimatedValue}" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col">
+                <label>Age :</label>
+                <input type="number" th:field="*{age}" class="form-control">
+            </div>
+            <div class="col">
+                <label>Acquisition Date :</label>
+                <input type="date" th:field="*{acquisitionDate}" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-6">
+                <label>Status :</label>
+                <select th:field="*{status}" class="form-control">
+                    <option value="Exhibited">Exhibited</option>
+                    <option value="Stored">Stored</option>
+                    <option value="Restoration">Restoration</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary m-2">Add</button>
+                <a th:href="@{/}" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

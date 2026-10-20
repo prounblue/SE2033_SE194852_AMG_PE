@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Artifact</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-4" style="border: 3px solid red; padding: 20px;">
+    <h1>View Artifact</h1>
+    <hr>
+    <div class="row mt-2">
+        <div class="col">
+            <strong>Artifact Code :</strong> <span th:text="${artifact.artifactCode}"></span>
+        </div>
+        <div class="col">
+            <strong>Category :</strong> <span th:text="${artifact.category != null ? artifact.category.categoryName : 'N/A'}"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <strong>Artifact Name :</strong> <span th:text="${artifact.artifactName}"></span>
+        </div>
+        <div class="col">
+            <strong>Estimate Value ($) :</strong> <span th:text="${artifact.estimatedValue}"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <strong>Age :</strong> <span th:text="${artifact.age}"></span>
+        </div>
+        <div class="col">
+            <strong>Acquisition Date :</strong> <span th:text="${artifact.acquisitionDate}"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-6">
+            <strong>Status :</strong> <span th:text="${artifact.status}"></span>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col text-center">
+            <a th:href="@{/}" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
