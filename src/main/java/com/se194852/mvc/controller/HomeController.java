@@ -52,7 +52,11 @@ public class HomeController {
 
     @GetMapping("/delete/{id}")
     public String deleteArtifact(@PathVariable("id") Integer id) {
-        artifactService.deleteArtifact(id);
+        try {
+            artifactService.deleteArtifact(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return "redirect:/";
     }
 }
