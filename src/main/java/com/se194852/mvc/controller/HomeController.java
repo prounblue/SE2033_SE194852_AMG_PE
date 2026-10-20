@@ -41,7 +41,7 @@ public class HomeController {
     }
 
     @GetMapping("/view/{id}")
-    public String viewArtifact(@PathVariable("id") Long id, Model model) {
+    public String viewArtifact(@PathVariable("id") Integer id, Model model) {
         Artifact artifact = artifactService.getArtifactById(id);
         if (artifact == null) {
             return "redirect:/";
