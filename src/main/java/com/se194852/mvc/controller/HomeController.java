@@ -51,7 +51,7 @@ public class HomeController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteArtifact(@PathVariable("id") Long id) {
+    public String deleteArtifact(@PathVariable("id") Integer id) {
         artifactService.deleteArtifact(id);
         return "redirect:/";
     }

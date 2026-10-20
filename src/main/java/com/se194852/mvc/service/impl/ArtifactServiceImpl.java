@@ -29,7 +29,7 @@ public class ArtifactServiceImpl implements ArtifactService {
         if (name == null || name.trim().isEmpty()) {
             return artifactRepository.findAll();
         }
-        return artifactRepository.findByArtifactNameContainingIgnoreCase(name);
+        return artifactRepository.findAllByOrderByAcquisitionDateDesc();
     }
 
     @Override
@@ -43,8 +43,16 @@ public class ArtifactServiceImpl implements ArtifactService {
     }
 
     @Override
-    public void deleteArtifact(Long id) {
-        artifactRepository.deleteById(id);
+    public boolean deleteArtifact(Integer id) throws Exception {
+        Artifact artifact = artifactRepository.findById(id).orElse(null);
+        if (artifact != null) {
+            if ("AC".equalsIgnoreCase(artifact.getStatus()) || "Active".equalsIgnoreCase(artifact.getStatus())) {
+                throw new Exception("Cannot delete an active artifact.");
+            }
+            artifactRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override

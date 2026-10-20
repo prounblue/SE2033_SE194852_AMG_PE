@@ -10,6 +10,6 @@ public interface ArtifactService {
     List<Artifact> searchByName(String name);
     Artifact getArtifactById(Long id);
     Artifact saveArtifact(Artifact artifact);
-    void deleteArtifact(Long id);
+    boolean deleteArtifact(Integer id);
     List<Category> getAllCategories();
 }
