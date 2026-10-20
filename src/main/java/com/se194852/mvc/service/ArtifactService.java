@@ -8,7 +8,7 @@ import java.util.List;
 public interface ArtifactService {
     List<Artifact> getAllArtifacts();
     List<Artifact> searchByName(String name);
-    Artifact getArtifactById(Long id);
+    Artifact getArtifactById(Integer id);
     Artifact saveArtifact(Artifact artifact);
     boolean deleteArtifact(Integer id) throws Exception;
     List<Category> getAllCategories();

@@ -33,7 +33,7 @@ public class ArtifactServiceImpl implements ArtifactService {
     }
 
     @Override
-    public Artifact getArtifactById(Long id) {
+    public Artifact getArtifactById(Integer id) {
         return artifactRepository.findById(id).orElse(null);
     }
 
