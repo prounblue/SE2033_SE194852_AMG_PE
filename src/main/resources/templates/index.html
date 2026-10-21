@@ -6,6 +6,12 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+<div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+    <p th:text="${errorMessage}"></p>
+</div>
+<div th:if="${message}" style="color: green; margin-bottom: 10px;">
+    <p th:text="${message}"></p>
+</div>
 <div class="container mt-4" style="border: 3px solid red; padding: 20px;">
     <h1>Artifact List</h1>
     <hr>
@@ -47,8 +53,9 @@
                 <td th:text="${art.acquisitionDate}">2026-01-01</td>
                 <td th:text="${art.status}">Active</td>
                 <td>
-                    <a th:href="@{'/view/' + ${art.id}}">View</a> |
-                    <a th:href="@{'/delete/' + ${art.id}}" onclick="return confirm('Are you sure you want to delete this artifact?');">Delete</a>
+                    <a th:href="@{/view/{id}(id=${art.id})}">View</a> |
+                    <a th:href="@{/delete/{id}(id=${art.id})}"
+                       onclick="return confirm('Are you sure you want to delete this artifact?');">Delete</a>
                 </td>
             </tr>
             <tr th:if="${#lists.isEmpty(artifacts)}">
